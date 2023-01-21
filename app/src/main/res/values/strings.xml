@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Anisham</string>
+    <string name="seleccionar">Seleccionar</string>
+    <string name="imagen_seleccionada">Imagen seleccionada</string>
+    <string name="enviar">Enviar</string>
+    <string name="log_in">Log in</string>
 </resources>

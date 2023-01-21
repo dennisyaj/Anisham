@@ -4,35 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrincipalActivity">
+    tools:context=".ui.activities.PrincipalActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/ivSelectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="335dp"
+            android:contentDescription="@string/imagen_seleccionada"
+            android:src="@drawable/ic_launcher_background"
+            tools:ignore="ImageContrastCheck" />
 
         <Button
             android:id="@+id/btnSelect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar"
+            android:text="@string/seleccionar"
             android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton" />
-
-        <ImageView
-            android:id="@+id/ivSelectedImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="Imagen seleccionada"
-            android:src="@drawable/ic_launcher_background" />
 
         <Button
             android:id="@+id/btnSend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enviar"
+            android:text="@string/enviar"
             android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     </LinearLayout>
