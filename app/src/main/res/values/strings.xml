@@ -4,4 +4,9 @@
     <string name="imagen_seleccionada">Imagen seleccionada</string>
     <string name="enviar">Enviar</string>
     <string name="log_in">Log in</string>
+    <string name="cancel">Cancelar</string>
+    <string name="decline">Declinar</string>
+    <string name="accept">Aceptar</string>
+    <string name="MensajeOkLogin">Estatus del usuario es: </string>
+    <string name="titleLogin">Validar Status</string>
 </resources>

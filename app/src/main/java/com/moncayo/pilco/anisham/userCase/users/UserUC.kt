@@ -7,7 +7,6 @@ import com.moncayo.pilco.anisham.model.repositories.UserAPIRepository
 
 class UserUC {
     suspend fun getUser(user: String): User? {
-
         var data: User? = null
         try {
             val service = UserAPIRepository().getRetrofit()

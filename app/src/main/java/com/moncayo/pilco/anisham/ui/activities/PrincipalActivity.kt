@@ -1,13 +1,15 @@
 package com.moncayo.pilco.anisham.ui.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
-import android.view.View.OnClickListener
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.moncayo.pilco.anisham.databinding.ActivityMainBinding
+import androidx.lifecycle.lifecycleScope
 import com.moncayo.pilco.anisham.databinding.ActivityPrincipalBinding
+import com.moncayo.pilco.anisham.userCase.users.SearchUC
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 
@@ -27,13 +29,14 @@ class PrincipalActivity : AppCompatActivity() {
 
         binding.btnSelect.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK).apply {
-                type = "image/*"
+                type = "image/jpeg"
             }
             startActivityForResult(
                 Intent.createChooser(intent, "Selecciona una imagen"), SELECT_IMAGE_REQUEST_CODE
             )
         }
         binding.btnSend.setOnClickListener {
+
             //var intent = Intent(this, DetallesAnime::class.java)
             //startActivity(intent)
         }
@@ -44,14 +47,37 @@ class PrincipalActivity : AppCompatActivity() {
 
         if (requestCode == SELECT_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.data != null) {
             val selectedImageUri = data.data
+
+            Log.e("Aquiii", selectedImageUri.toString())
             try {
                 val selectedImageBitmap =
                     MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
                 binding.ivSelectedImage.setImageBitmap(selectedImageBitmap)
+
+                val filePath = getRealPathFromURI(data.data!!)
+                lifecycleScope.launch {
+                    var anime = SearchUC().getAnime(filePath)
+                    Log.e("Aquiii", anime?.frameCount.toString())
+                }
+
             } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun getRealPathFromURI(contentURI: Uri): String {
+        val result: String
+        val cursor = contentResolver.query(contentURI, null, null, null, null)
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.path!!
+        } else {
+            cursor.moveToFirst()
+            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            result = cursor.getString(idx)
+            cursor.close()
+        }
+        return result
     }
 
     companion object {
