@@ -7,10 +7,14 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import com.moncayo.pilco.anisham.databinding.ActivityPrincipalBinding
 import com.moncayo.pilco.anisham.userCase.users.SearchUC
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
+import kotlin.math.log
 
 
 private lateinit var binding: ActivityPrincipalBinding
@@ -36,9 +40,15 @@ class PrincipalActivity : AppCompatActivity() {
             )
         }
         binding.btnSend.setOnClickListener {
-
-            //var intent = Intent(this, DetallesAnime::class.java)
-            //startActivity(intent)
+            var urlImagen = "https://images.plurk.com/7G7hr9zVoeMbRM1MrcL9to.jpg"
+            lifecycleScope.launch() {
+                var tmpBusqueda = SearchUC().getAnime(urlImagen)
+                var intent = Intent(this@PrincipalActivity, DetallesAnime::class.java)
+                val json = Gson().toJson(tmpBusqueda)
+                Log.i("datos", json)
+                intent.putExtra("listaDatos", Gson().toJson(json))
+                startActivity(intent)
+            }
         }
     }
 
@@ -47,18 +57,10 @@ class PrincipalActivity : AppCompatActivity() {
 
         if (requestCode == SELECT_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.data != null) {
             val selectedImageUri = data.data
-
-            Log.e("Aquiii", selectedImageUri.toString())
             try {
                 val selectedImageBitmap =
                     MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
                 binding.ivSelectedImage.setImageBitmap(selectedImageBitmap)
-
-                val filePath = getRealPathFromURI(data.data!!)
-                lifecycleScope.launch {
-                    var anime = SearchUC().getAnime(filePath)
-                    Log.e("Aquiii", anime?.frameCount.toString())
-                }
 
             } catch (e: IOException) {
                 e.printStackTrace()

@@ -10,13 +10,12 @@ import java.io.File
 
 
 class SearchUC {
-    suspend fun getAnime(selectedImageUri: String): SearchResponse? {
+    suspend fun getAnime(selectedImageUrl: String): SearchResponse? {
         var data: SearchResponse? = null
         try {
-            val file = File(selectedImageUri)
-            val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file)
             val service = SearchResponseApiRepository().getRetrofit()
-            val response = service.create(SearchEndPoint::class.java).search(requestFile)
+            val response = service.create(SearchEndPoint::class.java).searchByURL(selectedImageUrl)
+            Log.i("list","aqui")
             if (response.isSuccessful) {
                 data = response.body()!!
             } else {

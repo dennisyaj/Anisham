@@ -47,12 +47,10 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val user = UserUC().getUser(userId)
             if (user?.status == "active") {
-
                 MaterialAlertDialogBuilder(this@MainActivity)
                     .setTitle(R.string.titleLogin)
                     .setMessage(resources.getString(R.string.MensajeOkLogin) + user?.status)
                     .setNeutralButton("Aceptar") { dialog, which ->
-
                     }
                     .setPositiveButton("Ingresar") { dialog, which ->
                         var intent = Intent(this@MainActivity, PrincipalActivity::class.java)
