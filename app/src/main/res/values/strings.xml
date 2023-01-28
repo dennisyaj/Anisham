@@ -9,4 +9,5 @@
     <string name="accept">Aceptar</string>
     <string name="MensajeOkLogin">Estatus del usuario es: </string>
     <string name="titleLogin">Validar Status</string>
+    <string name="titulo_detalle_anime">Resultados de la busqueda</string>
 </resources>

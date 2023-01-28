@@ -46,7 +46,7 @@ class PrincipalActivity : AppCompatActivity() {
                 var intent = Intent(this@PrincipalActivity, DetallesAnime::class.java)
                 val json = Gson().toJson(tmpBusqueda)
                 Log.i("datos", json)
-                intent.putExtra("listaDatos", Gson().toJson(json))
+                intent.putExtra("listaDatos", json)
                 startActivity(intent)
             }
         }
