@@ -2,15 +2,15 @@ package com.moncayo.pilco.anisham.userCase.users
 
 import android.util.Log
 import com.moncayo.pilco.anisham.model.endPoints.UserEndPoint
-import com.moncayo.pilco.anisham.model.entities.api.User
-import com.moncayo.pilco.anisham.model.repositories.UserAPIRepository
+import com.moncayo.pilco.anisham.model.entities.api.user.User
+import com.moncayo.pilco.anisham.model.repositories.APIRepository
 
 class UserUC {
     suspend fun getUser(user: String): User? {
         var data: User? = null
         try {
-            val service = UserAPIRepository().getRetrofit()
-            val response = service.create(UserEndPoint::class.java).getUser(user)
+            val service = APIRepository().buildUserService(UserEndPoint::class.java)
+            val response = service.getUser(user)
             if (response.isSuccessful) {
                 data = response.body()!!
             } else {

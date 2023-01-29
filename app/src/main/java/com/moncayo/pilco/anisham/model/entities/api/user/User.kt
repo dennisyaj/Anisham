@@ -1,4 +1,4 @@
-package com.moncayo.pilco.anisham.model.entities.api
+package com.moncayo.pilco.anisham.model.entities.api.user
 
 data class User(
     val email: String,

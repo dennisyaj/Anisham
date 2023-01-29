@@ -3,25 +3,13 @@ package com.moncayo.pilco.anisham.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.ActivityMainBinding
-import com.moncayo.pilco.anisham.model.entities.api.User
-import com.moncayo.pilco.anisham.userCase.users.SearchUC
 import com.moncayo.pilco.anisham.userCase.users.UserUC
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 private lateinit var binding: ActivityMainBinding
 

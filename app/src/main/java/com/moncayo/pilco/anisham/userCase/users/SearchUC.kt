@@ -3,19 +3,15 @@ package com.moncayo.pilco.anisham.userCase.users
 import android.util.Log
 import com.moncayo.pilco.anisham.model.endPoints.SearchEndPoint
 import com.moncayo.pilco.anisham.model.entities.api.SearchResponse
-import com.moncayo.pilco.anisham.model.repositories.SearchResponseApiRepository
-import okhttp3.MediaType
-import okhttp3.RequestBody
-import java.io.File
+import com.moncayo.pilco.anisham.model.repositories.APIRepository
 
 
 class SearchUC {
     suspend fun getAnime(selectedImageUrl: String): SearchResponse? {
         var data: SearchResponse? = null
         try {
-            val service = SearchResponseApiRepository().getRetrofit()
-            val response = service.create(SearchEndPoint::class.java).searchByURL(selectedImageUrl)
-            Log.i("list","aqui")
+            val service = APIRepository().buildSearchService(SearchEndPoint::class.java)
+            val response = service.searchByURL("", selectedImageUrl)
             if (response.isSuccessful) {
                 data = response.body()!!
             } else {

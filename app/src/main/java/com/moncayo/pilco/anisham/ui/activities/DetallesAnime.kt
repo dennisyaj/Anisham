@@ -6,13 +6,9 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.ActivityDetallesAnimeBinding
-import com.moncayo.pilco.anisham.databinding.ActivityMainBinding
-import com.moncayo.pilco.anisham.model.entities.api.Result
 import com.moncayo.pilco.anisham.model.entities.api.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
-import com.moncayo.pilco.anisham.userCase.users.SearchUC
 import kotlinx.coroutines.launch
 
 private lateinit var binding: ActivityDetallesAnimeBinding

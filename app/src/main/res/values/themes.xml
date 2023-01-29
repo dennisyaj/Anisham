@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Anisham" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Anisham" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,19 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Card" parent="">
+        <item name="colorSecondary">@color/Pink</item>
+        <item name="colorSurface">@color/LightPink</item>
+        <item name="colorOnSurfaceVariant">@color/DeepPink</item>
     </style>
 </resources>

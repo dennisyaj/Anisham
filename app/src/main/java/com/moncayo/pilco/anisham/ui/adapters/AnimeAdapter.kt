@@ -16,9 +16,9 @@ class AnimeAdapter : RecyclerView.Adapter<AnimeAdapter.AnimeViewHolder>() {
 
         private var binding: ItemAnimeBinding = ItemAnimeBinding.bind(view)
         fun render(item: com.moncayo.pilco.anisham.model.entities.api.Result) {
-            binding.tvNombre.text = item.filename
+            binding.tvNombre.text = item.anilist.title.romaji
             binding.tvEspisodio.text = item.episode.toString()
-            binding.tvSimilitud.text = item.similarity.toString()
+            binding.tvSimilitud.text = String.format("%.2f", item.similarity)
             Picasso.get().load(item.image).into(binding.ivFoto)
         }
     }

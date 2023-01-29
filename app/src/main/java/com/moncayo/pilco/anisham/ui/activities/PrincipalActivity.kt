@@ -45,7 +45,6 @@ class PrincipalActivity : AppCompatActivity() {
                 var tmpBusqueda = SearchUC().getAnime(urlImagen)
                 var intent = Intent(this@PrincipalActivity, DetallesAnime::class.java)
                 val json = Gson().toJson(tmpBusqueda)
-                Log.i("datos", json)
                 intent.putExtra("listaDatos", json)
                 startActivity(intent)
             }
