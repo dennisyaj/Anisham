@@ -1,4 +1,6 @@
-package com.moncayo.pilco.anisham.model.entities.api
+package com.moncayo.pilco.anisham.model.entities.api.anime
+
+import com.moncayo.pilco.anisham.model.entities.api.anime.Anilist
 
 data class Result(
     val anilist: Anilist,

@@ -1,4 +1,4 @@
-package com.moncayo.pilco.anisham.model.entities.api
+package com.moncayo.pilco.anisham.model.entities.api.anime
 
 data class Anilist(
     val id: Int,

@@ -6,19 +6,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.ItemAnimeBinding
+import com.moncayo.pilco.anisham.model.entities.api.anime.Result
 import com.squareup.picasso.Picasso
 
 class AnimeAdapter : RecyclerView.Adapter<AnimeAdapter.AnimeViewHolder>() {
 
-    var dataList: List<com.moncayo.pilco.anisham.model.entities.api.Result> = emptyList()
+    var dataList: List<Result> = emptyList()
 
     class AnimeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         private var binding: ItemAnimeBinding = ItemAnimeBinding.bind(view)
-        fun render(item: com.moncayo.pilco.anisham.model.entities.api.Result) {
+        fun render(item: Result) {
             binding.tvNombre.text = item.anilist.title.romaji
             binding.tvEspisodio.text = item.episode.toString()
-            binding.tvSimilitud.text = String.format("%.2f", item.similarity)
+            binding.tvSimilitud.text = String.format("%.2f", item.similarity*100)+" %"
             Picasso.get().load(item.image).into(binding.ivFoto)
         }
     }

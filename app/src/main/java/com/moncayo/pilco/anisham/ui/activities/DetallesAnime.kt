@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.moncayo.pilco.anisham.databinding.ActivityDetallesAnimeBinding
-import com.moncayo.pilco.anisham.model.entities.api.SearchResponse
+import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
 
@@ -44,10 +44,9 @@ class DetallesAnime : AppCompatActivity() {
     }
 
     private fun loadAnimes(data: SearchResponse) {
-
         lifecycleScope.launch {
-
-            adapter.dataList = data.result!!
+            val uniqueAnimes = data.result!!.distinctBy { it.anilist.id }
+            adapter.dataList = uniqueAnimes
             binding.rvResultadoBusqueda.adapter = adapter
             binding.rvResultadoBusqueda.layoutManager = LinearLayoutManager(
                 this@DetallesAnime,
