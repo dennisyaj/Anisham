@@ -15,8 +15,8 @@ abstract class DBHistorialRepository : RoomDatabase() {
 
     abstract fun getHistorialDAO(): AniListDB
 }
+
 class DBHistorialConexion(){
-    fun getConnection(context:Context){
-        Room.databaseBuilder(context,DBHistorialRepository::class.java,"DBAnisham")
-    }
+    fun getConnection(context:Context) =  Room.databaseBuilder(context,DBHistorialRepository::class.java,"DBAnisham").build()
+
 }

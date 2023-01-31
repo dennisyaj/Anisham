@@ -8,7 +8,7 @@ import com.moncayo.pilco.anisham.model.entities.database.AniListDB
 interface HistorialDAO {
 
     @Query("select * from AniListDB")
-    fun getAllAnimes():List<Anilist>
+    fun getAllAnimes():List<AniListDB>
 
     @Query("select * from AniListDB where id = idAnime ")
     fun getOneAnimne(idAnime: Int): AniListDB
