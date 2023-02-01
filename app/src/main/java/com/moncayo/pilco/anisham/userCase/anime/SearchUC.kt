@@ -2,13 +2,15 @@ package com.moncayo.pilco.anisham.userCase.anime
 
 import android.util.Log
 import com.moncayo.pilco.anisham.model.endPoints.SearchEndPoint
+import com.moncayo.pilco.anisham.model.entities.api.anime.Anilist
 import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
+import com.moncayo.pilco.anisham.model.entities.database.HistorialDB
 import com.moncayo.pilco.anisham.model.repositories.APIRepository
+import com.moncayo.pilco.anisham.utils.Anisham
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-
 
 class SearchUC {
     suspend fun getAnime(selectedImageUrl: String): SearchResponse? {
@@ -44,5 +46,13 @@ class SearchUC {
             Log.d("Error", e.message.toString())
         }
         return data
+    }
+
+    suspend fun saveAnime(item :Anilist){
+        val conn = Anisham.getConn()
+        val dao = conn!!.getHistorialDAO()
+
+        val anime = HistorialDB(0,"")
+        conn!!.getHistorialDAO().insertAnime(anime)
     }
 }

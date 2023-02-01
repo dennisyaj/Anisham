@@ -1,9 +1,9 @@
 package com.moncayo.pilco.anisham.model.entities.api.anime
 
 data class Anilist(
-    val id: Int,
-    val idMal: Int,
-    val isAdult: Boolean,
-    val synonyms: List<String>,
-    val title: Title
+    val id: Int?=null,
+    val idMal: Int?=null,
+    val isAdult: Boolean?=null,
+    val synonyms: List<String>?=null,
+    val title: Title?=null
 )

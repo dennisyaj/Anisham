@@ -1,21 +1,20 @@
 package com.moncayo.pilco.anisham.model.dao
 
 import androidx.room.*
-import com.moncayo.pilco.anisham.model.entities.api.anime.Anilist
-import com.moncayo.pilco.anisham.model.entities.database.AniListDB
+import com.moncayo.pilco.anisham.model.entities.database.HistorialDB
 
 @Dao
 interface HistorialDAO {
 
     @Query("select * from AniListDB")
-    fun getAllAnimes():List<AniListDB>
+    fun getAllAnimes(): List<HistorialDB>
 
     @Query("select * from AniListDB where id = idAnime ")
-    fun getOneAnimne(idAnime: Int): AniListDB
+    fun getOneAnimne(idAnime: Int): HistorialDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAnime(a: AniListDB)
+    fun insertAnime(a: HistorialDB)
 
     @Delete
-    fun deleteAnime(a: AniListDB)
+    fun deleteAnime(a: HistorialDB)
 }

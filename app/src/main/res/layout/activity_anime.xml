@@ -69,6 +69,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     style="?attr/borderlessButtonStyle"
+                    android:id="@+id/btnFav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"

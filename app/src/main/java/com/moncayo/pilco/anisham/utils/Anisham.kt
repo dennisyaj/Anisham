@@ -10,20 +10,15 @@ class Anisham : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        context=applicationContext
+        context = applicationContext
     }
 
     @SuppressLint("StaticFieldLeak")
     companion object {
-       private  val dbCon: DBHistorialRepository? = null
+        private val dbCon: DBHistorialRepository? = null
         var context: Context? = null
         fun getConn(): DBHistorialRepository? {
-            return if (dbCon == null) {
-                return DBHistorialConexion().getConnection(context!!)
-                //con = Anisham.getConn()
-            }else {
-                 dbCon
-            }
+            return dbCon ?: return DBHistorialConexion().getConnection(context!!)
         }
     }
 }
