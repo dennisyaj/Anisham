@@ -29,7 +29,7 @@ class SeleccionImagenFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSeleccionImagenBinding.inflate(inflater, container, false)
         return binding.root
@@ -51,11 +51,9 @@ class SeleccionImagenFragment : Fragment() {
         }
         binding.btnSend.setOnClickListener {
             var urlImagen =
-                "https://www.cinepremiere.com.mx/wp-content/uploads/2020/11/El-tiempo-contigo-2019-900x491.jpg"
+                "https://i0.wp.com/www.gamerfocus.co/wp-content/uploads/2022/12/nier-automata-ver-1-1-a-anime-avance-opening-ending.jpg"
             lifecycleScope.launch() {
                 var tmpBusqueda = SearchUC().getAnime(urlImagen)
-                //var pathToImage = getRealPathFromURI(selectedImageUri)
-                //var tmpBusqueda = SearchUC().getAnimeWithImg(pathToImage.toString())
                 var intent = Intent(activity?.baseContext, DetallesAnime::class.java)
                 val json = Gson().toJson(tmpBusqueda)
                 intent.putExtra("listaDatos", json)

@@ -16,7 +16,7 @@ class SearchUC {
     suspend fun getAnime(selectedImageUrl: String): SearchResponse? {
         var data: SearchResponse? = null
         try {
-            val service = APIRepository().buildSearchService(SearchEndPoint::class.java)
+            val service = APIRepository().buildTraceMoeService(SearchEndPoint::class.java)
             val response = service.searchByURL("", selectedImageUrl)
             if (response.isSuccessful) {
                 data = response.body()!!
@@ -35,7 +35,7 @@ class SearchUC {
             val file = File(pathToImage)
             val fileReqBody = RequestBody.create(MediaType.parse("application/octet-stream"), file)
             val image = MultipartBody.Part.createFormData("image", file.name, fileReqBody)
-            val service = APIRepository().buildSearchService(SearchEndPoint::class.java)
+            val service = APIRepository().buildTraceMoeService(SearchEndPoint::class.java)
             val response = service.searchWithFile("",image)
             if (response.isSuccessful) {
                 data = response.body()!!

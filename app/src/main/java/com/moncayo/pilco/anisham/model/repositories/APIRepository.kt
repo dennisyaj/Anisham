@@ -11,13 +11,18 @@ class APIRepository {
             .build()
     }
 
-    fun <T> buildSearchService(service: Class<T>): T {
+    fun <T> buildTraceMoeService(service: Class<T>): T {
         val builder = getRetrofitBuilder("https://api.trace.moe")
         return builder.create(service)
     }
 
     fun <T> buildUserService(service: Class<T>): T {
         val builder = getRetrofitBuilder("https://gorest.co.in/public/v2/")
+        return builder.create(service)
+    }
+
+    fun <T> buildMonosChinosService(service: Class<T>): T {
+        val builder = getRetrofitBuilder("https://dnsdm.herokuapp.com")
         return builder.create(service)
     }
 }

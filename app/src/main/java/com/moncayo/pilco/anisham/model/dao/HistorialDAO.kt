@@ -6,10 +6,10 @@ import com.moncayo.pilco.anisham.model.entities.database.HistorialDB
 @Dao
 interface HistorialDAO {
 
-    @Query("select * from AniListDB")
+    @Query("select * from HistorialDB")
     fun getAllAnimes(): List<HistorialDB>
 
-    @Query("select * from AniListDB where id = idAnime ")
+    @Query("select * from HistorialDB where idMal = :idAnime ")
     fun getOneAnimne(idAnime: Int): HistorialDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

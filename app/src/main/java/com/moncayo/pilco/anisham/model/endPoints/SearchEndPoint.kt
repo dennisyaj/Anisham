@@ -11,14 +11,14 @@ import retrofit2.http.Query
 
 
 interface SearchEndPoint {
-    @GET("/search")
+    @GET("search")
     suspend fun searchByURL(
         @Query("anilistInfo") anilistInfo: String,
         @Query("url") url: String
     ): Response<SearchResponse>
 
     @Multipart
-    @POST("/search")
+    @POST("search")
     fun searchWithFile(
         @Query("anilistInfo") anilistInfo: String,
         @Part image: MultipartBody.Part

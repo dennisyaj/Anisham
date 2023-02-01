@@ -1,5 +1,6 @@
 package com.moncayo.pilco.anisham.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.moncayo.pilco.anisham.databinding.ActivityDetallesAnimeBinding
 import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
+import com.moncayo.pilco.anisham.model.entities.api.anime.Result
 
 private lateinit var binding: ActivityDetallesAnimeBinding
 
@@ -27,10 +29,8 @@ class DetallesAnime : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         var json: String = ""
         var item: SearchResponse = SearchResponse()
-
         intent.extras.let {
             json = it?.getString("listaDatos").toString()
             Log.i("detalle", json)
@@ -46,6 +46,17 @@ class DetallesAnime : AppCompatActivity() {
     private fun loadAnimes(data: SearchResponse) {
         lifecycleScope.launch {
             val uniqueAnimes = data.result!!.distinctBy { it.anilist.id }
+
+            val itemClick = fun(item: Result) {
+                val toShowInfo = Intent(this@DetallesAnime,
+                    Anime::class.java)
+                val json = Gson().toJson(item)
+                toShowInfo.putExtra("item", json)
+                startActivity(toShowInfo)
+
+            }
+
+            adapter.itemClick = itemClick
             adapter.dataList = uniqueAnimes
             binding.rvResultadoBusqueda.adapter = adapter
             binding.rvResultadoBusqueda.layoutManager = LinearLayoutManager(
