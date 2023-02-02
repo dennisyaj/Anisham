@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class Anime : AppCompatActivity() {
     private lateinit var binding: ActivityAnimeBinding
-    var item = Anilist()
+    var item: AnimeMCResponse = AnimeMCResponse()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnimeBinding.inflate(layoutInflater)
@@ -26,7 +26,7 @@ class Anime : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         var json: String = ""
-        var item: AnimeMCResponse = AnimeMCResponse()
+
 
         intent.extras.let {
             json = it?.getString("item").toString()
@@ -48,7 +48,7 @@ class Anime : AppCompatActivity() {
 
     private fun saveItem() {
         lifecycleScope.launch(Dispatchers.IO) {
-            SearchUC().saveAnime(item)
+
         }
     }
 }

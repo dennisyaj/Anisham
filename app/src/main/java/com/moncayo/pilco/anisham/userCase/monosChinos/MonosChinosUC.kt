@@ -1,15 +1,18 @@
 package com.moncayo.pilco.anisham.userCase.monosChinos
 
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.moncayo.pilco.anisham.model.endPoints.MonosChinosEndPoint
 import com.moncayo.pilco.anisham.model.endPoints.UserEndPoint
+import com.moncayo.pilco.anisham.model.entities.api.anime.Result
 import com.moncayo.pilco.anisham.model.entities.api.monosChinos.AnimeMCResponse
 import com.moncayo.pilco.anisham.model.entities.api.monosChinos.SearchMCResponse
 import com.moncayo.pilco.anisham.model.entities.api.user.User
 import com.moncayo.pilco.anisham.model.repositories.APIRepository
+import kotlinx.coroutines.launch
 
 class MonosChinosUC {
-    suspend fun searchAnimeByID(id: String): SearchMCResponse? {
+    suspend private fun searchAnimeByID(id: String): SearchMCResponse? {
         var data: SearchMCResponse? = null
         try {
             val service = APIRepository().buildMonosChinosService(MonosChinosEndPoint::class.java)
@@ -25,7 +28,7 @@ class MonosChinosUC {
         return data
     }
 
-    suspend fun getAnimeByID(id: String): AnimeMCResponse? {
+    suspend private fun getAnimeByID(id: String): AnimeMCResponse? {
         var data: AnimeMCResponse? = null
         try {
             val service = APIRepository().buildMonosChinosService(MonosChinosEndPoint::class.java)
@@ -39,5 +42,13 @@ class MonosChinosUC {
             Log.d("Error", e.message.toString())
         }
         return data
+    }
+
+    suspend fun generarDetalles(item: Result): AnimeMCResponse? {
+        var tmp: SearchMCResponse? = null
+        var tmp2: AnimeMCResponse? = null
+        tmp = MonosChinosUC().searchAnimeByID(item.anilist.title?.romaji.toString())
+        tmp2 = MonosChinosUC().getAnimeByID(tmp?.get(0)?.id.toString())
+        return tmp2
     }
 }

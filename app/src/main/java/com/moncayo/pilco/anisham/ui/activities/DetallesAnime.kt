@@ -12,12 +12,18 @@ import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
 import com.moncayo.pilco.anisham.model.entities.api.anime.Result
+import com.moncayo.pilco.anisham.model.entities.api.monosChinos.AnimeMCResponse
+import com.moncayo.pilco.anisham.model.entities.api.monosChinos.SearchMCResponse
+import com.moncayo.pilco.anisham.userCase.monosChinos.MonosChinosUC
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 private lateinit var binding: ActivityDetallesAnimeBinding
 
 class DetallesAnime : AppCompatActivity() {
 
     private val listAnimes = SearchResponse()
+    private val listAnimesMC = SearchMCResponse()
     private val adapter = AnimeAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +39,6 @@ class DetallesAnime : AppCompatActivity() {
         var item: SearchResponse = SearchResponse()
         intent.extras.let {
             json = it?.getString("listaDatos").toString()
-            Log.i("detalle", json)
             if (json != "") {
                 item = Gson().fromJson(
                     json, SearchResponse::class.java
@@ -44,16 +49,17 @@ class DetallesAnime : AppCompatActivity() {
     }
 
     private fun loadAnimes(data: SearchResponse) {
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.Main) {
             val uniqueAnimes = data.result!!.distinctBy { it.anilist.id }
-
             val itemClick = fun(item: Result) {
-                val toShowInfo = Intent(this@DetallesAnime,
-                    Anime::class.java)
-                val json = Gson().toJson(item)
-                toShowInfo.putExtra("item", json)
-                startActivity(toShowInfo)
-
+                val job = lifecycleScope.launch {
+                    var tmp = MonosChinosUC().generarDetalles(item)
+                    val json = Gson().toJson(tmp)
+                    val toShowInfo = Intent(this@DetallesAnime,
+                        Anime::class.java)
+                    toShowInfo.putExtra("item", json)
+                    startActivity(toShowInfo)
+                }
             }
 
             adapter.itemClick = itemClick
