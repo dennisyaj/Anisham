@@ -44,6 +44,8 @@ class Anime : AppCompatActivity() {
         binding.tvTituloAnime.text = item.title.toString()
         binding.tvTextoSecundario.text = item.sinopsis.toString()
         Picasso.get().load(item.image).into(binding.ivBanner)
+        binding.tvSoporte.text = item.rating
+        binding.rbPuntaje.setRating(item.rating!!.toFloat())
     }
 
     private fun saveItem() {
