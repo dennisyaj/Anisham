@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".ui.activities.Anime">
 
     <androidx.cardview.widget.CardView
@@ -33,6 +34,11 @@
                 android:scaleX="0.6"
                 app:srcCompat="@drawable/ic_launcher_background" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,16 +58,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="secondary_text"
+                    android:text="sinopsis"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
 
                 <TextView
                     android:id="@+id/tvSoporte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="supporting_text"
+                    android:text="rating"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?android:attr/textColorSecondary" />
 
@@ -69,14 +80,30 @@
                     android:id="@+id/rbPuntaje"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="Enter How Much Cookies You Want"
                     android:isIndicator="false"
                     android:numStars="5"
-                    android:rating="0.5"
-                    android:stepSize="0.1"
-                    android:contentDescription="Enter How Much Cookies You Want"/>
+                    android:stepSize="0.1" />
 
             </LinearLayout>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/tvGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/genero" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
             <!-- Buttons -->
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -88,14 +115,14 @@
                     android:id="@+id/btnFav"
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="8dp"
                     android:text="action_1" />
 
                 <com.google.android.material.button.MaterialButton
                     style="?attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="action_2" />
             </LinearLayout>
 

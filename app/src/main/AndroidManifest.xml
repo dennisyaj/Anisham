@@ -17,6 +17,14 @@
         android:theme="@style/Theme.Anisham"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.Reproductor"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".ui.activities.Anime"
             android:exported="false">
             <meta-data

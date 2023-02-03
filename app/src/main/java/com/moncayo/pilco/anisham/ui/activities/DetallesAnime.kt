@@ -3,7 +3,6 @@ package com.moncayo.pilco.anisham.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -12,11 +11,9 @@ import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
 import com.moncayo.pilco.anisham.model.entities.api.anime.Result
-import com.moncayo.pilco.anisham.model.entities.api.monosChinos.AnimeMCResponse
 import com.moncayo.pilco.anisham.model.entities.api.monosChinos.SearchMCResponse
 import com.moncayo.pilco.anisham.userCase.monosChinos.MonosChinosUC
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 private lateinit var binding: ActivityDetallesAnimeBinding
 
