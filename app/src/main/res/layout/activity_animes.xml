@@ -11,7 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/titulo_detalle_anime"
-        android:textSize="18dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
