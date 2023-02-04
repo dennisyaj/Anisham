@@ -10,4 +10,8 @@ class HistorialDB(
     val idMal: Int,
     @ColumnInfo("titulo")
     val title: String
-)
+) {
+    override fun toString(): String {
+        return "HistorialDB(id=$idMal, image='$title')"
+    }
+}

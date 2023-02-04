@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".ui.activities.Anime">
+    tools:context=".ui.activities.DetalleAnime">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -24,7 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Media -->
             <ImageView
                 android:id="@+id/ivBanner"
                 android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                 android:contentDescription="@string/content_description_media"
                 android:scaleType="centerCrop"
                 android:scaleX="0.6"
+                android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <com.google.android.material.divider.MaterialDivider
@@ -85,7 +85,6 @@
                     android:isIndicator="false"
                     android:numStars="5"
                     android:stepSize="0.1" />
-
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -104,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
-            <!-- Buttons -->
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,11 +118,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="action_1" />
 
-                <com.google.android.material.button.MaterialButton
-                    style="?attr/borderlessButtonStyle"
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/fbtnAgregar"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="action_2" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:text="@string/description_btn_floating"
+                    android:contentDescription="@string/description_button"
+                    app:icon="@drawable/baseline_radio_button_unchecked_24" />
             </LinearLayout>
 
         </LinearLayout>

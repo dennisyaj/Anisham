@@ -23,4 +23,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
- </resources>
+    <string name="description_btn_floating">¿Este anime es correcto?</string>
+    <string name="description_button">Boton para describir si es correto</string>
+</resources>

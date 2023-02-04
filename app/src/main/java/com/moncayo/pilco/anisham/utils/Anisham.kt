@@ -16,8 +16,9 @@ class Anisham : Application() {
     @SuppressLint("StaticFieldLeak")
     companion object {
         private val dbCon: DBHistorialRepository? = null
+        @SuppressLint("StaticFieldLeak")
         var context: Context? = null
-        fun getConn(): DBHistorialRepository? {
+        fun getConn(): DBHistorialRepository {
             return dbCon ?: return DBHistorialConexion().getConnection(context!!)
         }
     }

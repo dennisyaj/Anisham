@@ -7,17 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.moncayo.pilco.anisham.R
-import com.moncayo.pilco.anisham.databinding.ActivityMainBinding
+import com.moncayo.pilco.anisham.databinding.ActivityLoginBinding
 import com.moncayo.pilco.anisham.userCase.users.UserUC
 import kotlinx.coroutines.launch
 
-private lateinit var binding: ActivityMainBinding
+private lateinit var binding: ActivityLoginBinding
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         adicional()
@@ -35,17 +35,17 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val user = UserUC().getUser(userId)
             if (user?.status == "active") {
-                MaterialAlertDialogBuilder(this@MainActivity)
+                MaterialAlertDialogBuilder(this@LoginActivity)
                     .setTitle(R.string.titleLogin)
                     .setMessage(resources.getString(R.string.MensajeOkLogin) + user?.status)
                     .setNeutralButton("Aceptar") { dialog, which ->
                     }
                     .setPositiveButton("Ingresar") { dialog, which ->
-                        var intent = Intent(this@MainActivity, PrincipalActivity::class.java)
+                        var intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
                         startActivity(intent)
                     }.show()
             } else {
-                MaterialAlertDialogBuilder(this@MainActivity)
+                MaterialAlertDialogBuilder(this@LoginActivity)
                     .setTitle(R.string.titleLogin)
                     .setMessage(resources.getString(R.string.MensajeOkLogin) + user?.status)
                     .setNeutralButton("Reintentar") { dialog, which ->

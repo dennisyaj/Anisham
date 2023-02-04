@@ -15,7 +15,7 @@ import com.google.gson.Gson
 import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.FragmentHistorialBinding
 import com.moncayo.pilco.anisham.databinding.FragmentSeleccionImagenBinding
-import com.moncayo.pilco.anisham.ui.activities.DetallesAnime
+import com.moncayo.pilco.anisham.ui.activities.Animes
 import com.moncayo.pilco.anisham.userCase.anime.SearchUC
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,14 +50,16 @@ class SeleccionImagenFragment : Fragment() {
             )
         }
         binding.btnSend.setOnClickListener {
+            binding.cpCarga.visibility = View.VISIBLE
             var urlImagen =
                 "https://i0.wp.com/www.gamerfocus.co/wp-content/uploads/2022/12/nier-automata-ver-1-1-a-anime-avance-opening-ending.jpg"
             lifecycleScope.launch() {
                 var tmpBusqueda = SearchUC().getAnime(urlImagen)
-                var intent = Intent(activity?.baseContext, DetallesAnime::class.java)
+                var intent = Intent(activity?.baseContext, Animes::class.java)
                 val json = Gson().toJson(tmpBusqueda)
                 intent.putExtra("listaDatos", json)
                 startActivity(intent)
+                binding.cpCarga.visibility = View.GONE
             }
         }
     }

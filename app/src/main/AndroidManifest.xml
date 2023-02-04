@@ -25,21 +25,21 @@
         </activity>
 
         <activity
-            android:name=".ui.activities.Anime"
+            android:name=".ui.activities.DetalleAnime"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.activities.DetallesAnime"
+            android:name=".ui.activities.Animes"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

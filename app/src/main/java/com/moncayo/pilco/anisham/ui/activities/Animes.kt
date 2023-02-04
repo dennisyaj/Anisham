@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import com.moncayo.pilco.anisham.databinding.ActivityDetallesAnimeBinding
+import com.moncayo.pilco.anisham.databinding.ActivityAnimesBinding
 import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
@@ -15,9 +15,9 @@ import com.moncayo.pilco.anisham.model.entities.api.monosChinos.SearchMCResponse
 import com.moncayo.pilco.anisham.userCase.monosChinos.MonosChinosUC
 import kotlinx.coroutines.Dispatchers
 
-private lateinit var binding: ActivityDetallesAnimeBinding
+private lateinit var binding: ActivityAnimesBinding
 
-class DetallesAnime : AppCompatActivity() {
+class Animes : AppCompatActivity() {
 
     private val listAnimes = SearchResponse()
     private val listAnimesMC = SearchMCResponse()
@@ -25,7 +25,7 @@ class DetallesAnime : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetallesAnimeBinding.inflate(layoutInflater)
+        binding = ActivityAnimesBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
     }
@@ -52,8 +52,8 @@ class DetallesAnime : AppCompatActivity() {
                 val job = lifecycleScope.launch {
                     var tmp = MonosChinosUC().generarDetalles(item)
                     val json = Gson().toJson(tmp)
-                    val toShowInfo = Intent(this@DetallesAnime,
-                        Anime::class.java)
+                    val toShowInfo = Intent(this@Animes,
+                        DetalleAnime::class.java)
                     toShowInfo.putExtra("item", json)
                     startActivity(toShowInfo)
                 }
@@ -63,7 +63,7 @@ class DetallesAnime : AppCompatActivity() {
             adapter.dataList = uniqueAnimes
             binding.rvResultadoBusqueda.adapter = adapter
             binding.rvResultadoBusqueda.layoutManager = LinearLayoutManager(
-                this@DetallesAnime,
+                this@Animes,
                 LinearLayoutManager.VERTICAL,
                 false
             )
