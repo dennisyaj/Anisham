@@ -2,7 +2,6 @@ package com.moncayo.pilco.anisham.userCase.anime
 
 import android.util.Log
 import com.moncayo.pilco.anisham.model.endPoints.SearchEndPoint
-import com.moncayo.pilco.anisham.model.entities.api.anime.Anilist
 import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.model.entities.api.monosChinos.AnimeMCResponse
 import com.moncayo.pilco.anisham.model.entities.database.HistorialDB
@@ -30,21 +29,22 @@ class SearchUC {
         return data
     }
 
-    suspend fun getAnimeWithImg(pathToImage: String): SearchResponse? {
+    suspend fun getAnimeWithImg(file: File): SearchResponse? {
         var data: SearchResponse? = null
         try {
-            val file = File(pathToImage)
+            val headerMap = mutableMapOf<String, String>()
+            headerMap["accept"] = "application/json"
             val fileReqBody = RequestBody.create(MediaType.parse("application/octet-stream"), file)
-            val image = MultipartBody.Part.createFormData("image", file.name, fileReqBody)
+            //val image = MultipartBody.Part.createFormData("image", file.name, fileReqBody)
             val service = APIRepository().buildTraceMoeService(SearchEndPoint::class.java)
-            val response = service.searchWithFile("", image)
+            val response = service.conImg(headerMap, fileReqBody)
             if (response.isSuccessful) {
                 data = response.body()!!
             } else {
                 throw Exception("Fracaso en la conexion")
             }
         } catch (e: Exception) {
-            Log.d("Error", e.message.toString())
+            Log.d("error", e.message.toString())
         }
         return data
     }
