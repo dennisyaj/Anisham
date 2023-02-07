@@ -3,6 +3,7 @@ package com.moncayo.pilco.anisham.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,6 +28,13 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             validarUsuario(binding.tfUserLogin.text.toString())
         }
+        binding.tfUserLogin.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                validarUsuario(binding.tfUserLogin.text.toString())
+                return@setOnKeyListener true
+            }
+            false
+        }
     }
 
     private fun validarUsuario(userId: String) {
@@ -35,15 +43,16 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val user = UserUC().getUser(userId)
             if (user?.status == "active") {
-                MaterialAlertDialogBuilder(this@LoginActivity)
-                    .setTitle(R.string.titleLogin)
-                    .setMessage(resources.getString(R.string.MensajeOkLogin) + user?.status)
-                    .setNeutralButton("Aceptar") { dialog, which ->
-                    }
-                    .setPositiveButton("Ingresar") { dialog, which ->
-                        var intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
-                        startActivity(intent)
-                    }.show()
+                //MaterialAlertDialogBuilder(this@LoginActivity)
+                // .setTitle(R.string.titleLogin)
+                // .setMessage(resources.getString(R.string.MensajeOkLogin) + user?.status)
+                // .setNeutralButton("Aceptar") { dialog, which ->
+                //  }
+                //  .setPositiveButton("Ingresar") { dialog, which ->
+                var intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
+                intent.putExtra("user", user.name)
+                startActivity(intent)
+                //  }.show()
             } else {
                 MaterialAlertDialogBuilder(this@LoginActivity)
                     .setTitle(R.string.titleLogin)
@@ -52,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
                         validarUsuario(binding.tfUserLogin.text.toString())
                     }
                     .setNegativeButton("Cancelar") { dialog, which ->
-                        // Respond to negative button press
                     }.show()
             }
         }

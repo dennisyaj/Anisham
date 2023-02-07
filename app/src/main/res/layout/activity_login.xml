@@ -7,37 +7,70 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.LoginActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="32dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="TODO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/logo" />
 
-        android:layout_width="342dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="10dp"
-        android:hint="Ingrese Usuario"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/righteous"
+        android:text="@string/nombreApp"
+        android:textSize="87sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/righteous"
+        android:text="by"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:contentDescription="ingreso de id usuario"
+        android:hint="Ingrese ID de usuario"
         app:boxCornerRadiusBottomEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:startIconDrawable="@drawable/outline_account_circle_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tfUserLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="187578" />
-
+            android:layout_height="match_parent"
+            android:minHeight="48dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginTop="20dp"
         android:text="@string/log_in"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

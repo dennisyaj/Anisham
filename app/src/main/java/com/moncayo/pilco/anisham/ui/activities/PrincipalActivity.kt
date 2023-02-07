@@ -18,6 +18,15 @@ class PrincipalActivity : AppCompatActivity() {
         setContentView(view)
         init()
         cargarFrameInicial()
+        nombreUsuario()
+    }
+
+    fun nombreUsuario() {
+        var nombre = ""
+        intent.extras.let {
+            nombre = it?.getString("user").toString()
+        }
+        binding.tvUser.text = "Usuario: " + nombre
     }
 
     private fun cargarFrameInicial() {
