@@ -11,7 +11,6 @@ import com.moncayo.pilco.anisham.model.entities.api.anime.SearchResponse
 import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
 import kotlinx.coroutines.launch
 import com.moncayo.pilco.anisham.model.entities.api.anime.Result
-import com.moncayo.pilco.anisham.model.entities.api.monosChinos.SearchMCResponse
 import com.moncayo.pilco.anisham.userCase.monosChinos.MonosChinosUC
 import kotlinx.coroutines.Dispatchers
 
@@ -19,8 +18,6 @@ private lateinit var binding: ActivityAnimesBinding
 
 class Animes : AppCompatActivity() {
 
-    private val listAnimes = SearchResponse()
-    private val listAnimesMC = SearchMCResponse()
     private val adapter = AnimeAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +31,8 @@ class Animes : AppCompatActivity() {
         super.onStart()
         var json: String = ""
         var item: SearchResponse = SearchResponse()
+        var json2: String = ""
+        var item2: Result = Result()
         intent.extras.let {
             json = it?.getString("listaDatos").toString()
             if (json != "") {
@@ -41,20 +40,30 @@ class Animes : AppCompatActivity() {
                     json, SearchResponse::class.java
                 )
             }
+            json2 = it?.getString("listaDatos").toString()
+            if (json2 != "") {
+                item2 = Gson().fromJson(
+                    json2, Result::class.java
+                )
+            }
         }
-        loadAnimes(item)
+        loadAnimes(item, item2)
     }
 
-    private fun loadAnimes(data: SearchResponse) {
+    private fun loadAnimes(data: SearchResponse, item2: Result) {
         lifecycleScope.launch(Dispatchers.Main) {
-            val uniqueAnimes = data.result!!.distinctBy { it.anilist.id }
+            val uniqueAnimes = data.result!!.distinctBy { it.anilist?.id }
             val itemClick = fun(item: Result) {
                 val job = lifecycleScope.launch {
                     var tmp = MonosChinosUC().generarDetalles(item)
                     val json = Gson().toJson(tmp)
-                    val toShowInfo = Intent(this@Animes,
-                        DetalleAnime::class.java)
+                    val json2 = Gson().toJson(item)
+                    val toShowInfo = Intent(
+                        this@Animes,
+                        DetalleAnime::class.java
+                    )
                     toShowInfo.putExtra("item", json)
+                    toShowInfo.putExtra("idDB", json2)
                     startActivity(toShowInfo)
                 }
             }

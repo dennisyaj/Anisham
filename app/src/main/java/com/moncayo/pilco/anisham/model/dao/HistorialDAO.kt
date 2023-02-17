@@ -7,14 +7,14 @@ import com.moncayo.pilco.anisham.model.entities.database.HistorialDB
 interface HistorialDAO {
 
     @Query("select * from HistorialDB")
-    fun getAllAnimes(): List<HistorialDB>
+    fun obtenerTodoHistorial(): List<HistorialDB>
 
     @Query("select * from HistorialDB where idMal = :idAnime ")
     fun getOneAnimne(idAnime: Int): HistorialDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAnime(a: HistorialDB)
+    fun insertarHistorial(a: HistorialDB)
 
     @Delete
-    fun deleteAnime(a: HistorialDB)
+    fun eliminarHistorial(a: HistorialDB)
 }

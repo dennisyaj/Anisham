@@ -47,7 +47,7 @@ class MonosChinosUC {
     suspend fun generarDetalles(item: Result): AnimeMCResponse? {
         var tmp: SearchMCResponse? = null
         var tmp2: AnimeMCResponse? = null
-        tmp = MonosChinosUC().searchAnimeByID(item.anilist.title?.romaji.toString())
+        tmp = MonosChinosUC().searchAnimeByID(item.anilist?.title?.romaji.toString())
         tmp2 = MonosChinosUC().getAnimeByID(tmp?.get(0)?.id.toString())
         return tmp2
     }

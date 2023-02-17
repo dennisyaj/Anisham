@@ -16,6 +16,8 @@ import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.FragmentHistorialBinding
 import com.moncayo.pilco.anisham.databinding.FragmentSeleccionImagenBinding
 import com.moncayo.pilco.anisham.ui.activities.Animes
+import com.moncayo.pilco.anisham.ui.adapters.AnimeAdapter
+import com.moncayo.pilco.anisham.ui.adapters.HistorialAdapter
 import com.moncayo.pilco.anisham.userCase.anime.SearchUC
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

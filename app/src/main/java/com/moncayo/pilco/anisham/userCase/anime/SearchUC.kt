@@ -49,15 +49,4 @@ class SearchUC {
         return data
     }
 
-    suspend fun saveAnime(item: AnimeMCResponse) {
-        val conn = Anisham.getConn()
-        val dao = conn.getHistorialDAO()
-        val itemDB = HistorialDB(3, item.image.toString())
-        dao.insertAnime(itemDB)
-        Log.d(
-            "UCE",
-            dao.getAllAnimes().toString()
-        )
-    }
-
 }
