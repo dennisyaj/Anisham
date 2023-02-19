@@ -11,12 +11,8 @@ class HistorialUC {
     suspend fun saveAnime(item: Result) {
         val conn = Anisham.getConn()
         val dao = conn.getHistorialDAO()
-        val itemDB = HistorialDB(item.anilist!!.idMal!!.toInt(), item.anilist.title.toString())
+        val itemDB = HistorialDB(item.anilist!!.idMal!!.toInt(), item)
         dao.insertarHistorial(itemDB)
-        Log.d(
-            "UCE",
-            dao.obtenerTodoHistorial().toString()
-        )
     }
 
     suspend fun obtenerHistorial(): List<HistorialDB> {

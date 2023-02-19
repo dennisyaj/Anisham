@@ -21,6 +21,7 @@ class DetalleAnime : AppCompatActivity() {
     private var listGeneros = ArrayList<String>()
     var item: AnimeMCResponse = AnimeMCResponse()
     var item2: Result = Result()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetalleAnimeBinding.inflate(layoutInflater)

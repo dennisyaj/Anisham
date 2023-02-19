@@ -17,18 +17,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HistorialFragment : Fragment() {
-
     private lateinit var binding: FragmentHistorialBinding
     private val adapter = HistorialAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentHistorialBinding.inflate(inflater, container, false)
         return binding.root
-
     }
-
     override fun onStart() {
         super.onStart()
         init()

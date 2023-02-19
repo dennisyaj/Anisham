@@ -40,17 +40,11 @@ class Animes : AppCompatActivity() {
                     json, SearchResponse::class.java
                 )
             }
-            json2 = it?.getString("listaDatos").toString()
-            if (json2 != "") {
-                item2 = Gson().fromJson(
-                    json2, Result::class.java
-                )
-            }
         }
-        loadAnimes(item, item2)
+        loadAnimes(item)
     }
 
-    private fun loadAnimes(data: SearchResponse, item2: Result) {
+    private fun loadAnimes(data: SearchResponse) {
         lifecycleScope.launch(Dispatchers.Main) {
             val uniqueAnimes = data.result!!.distinctBy { it.anilist?.id }
             val itemClick = fun(item: Result) {
