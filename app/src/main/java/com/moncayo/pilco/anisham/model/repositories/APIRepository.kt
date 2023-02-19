@@ -25,4 +25,9 @@ class APIRepository {
         val builder = getRetrofitBuilder("https://dnsdm.herokuapp.com")
         return builder.create(service)
     }
+
+    fun <T> buildMyAnimeList(service: Class<T>): T {
+        val builder = getRetrofitBuilder("https://api.myanimelist.net/v2")
+        return builder.create(service)
+    }
 }

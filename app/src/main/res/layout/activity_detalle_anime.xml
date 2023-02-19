@@ -33,10 +33,10 @@
                     android:id="@+id/ivBanner"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    android:layout_marginTop="10dp"
                     android:contentDescription="@string/content_description_media"
                     android:scaleType="centerCrop"
                     android:scaleX="0.6"
-                    android:layout_marginTop="10dp"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -86,10 +86,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:contentDescription="Enter How Much Cookies You Want"
-                        android:isIndicator="false"
+                        android:isIndicator="true"
                         android:numStars="5"
-                        android:stepSize="0.1"
-                        android:isIndicator="true"/>
+                        android:stepSize="0.1" />
                 </LinearLayout>
 
                 <com.google.android.material.divider.MaterialDivider
@@ -128,8 +127,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|end"
-                        android:text="@string/description_btn_floating"
                         android:contentDescription="@string/description_button"
+                        android:text="@string/description_btn_floating"
                         app:icon="@drawable/baseline_radio_button_unchecked_24" />
                 </LinearLayout>
 
