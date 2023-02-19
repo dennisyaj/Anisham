@@ -48,6 +48,9 @@ class MonosChinosUC {
         var tmp: SearchMCResponse? = null
         var tmp2: AnimeMCResponse? = null
         tmp = MonosChinosUC().searchAnimeByID(item.anilist?.title?.romaji.toString())
+        if(tmp?.size==0){
+            return null
+        }
         tmp2 = MonosChinosUC().getAnimeByID(tmp?.get(0)?.id.toString())
         return tmp2
     }

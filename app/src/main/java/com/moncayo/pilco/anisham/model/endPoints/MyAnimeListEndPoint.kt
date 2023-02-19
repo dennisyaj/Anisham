@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface MyAnimeListEndPoint {
 
-    @GET("/anime/{idAnime}")
+    @GET("anime/{idAnime}")
     @Headers("X-MAL-CLIENT-ID:"+Variables.ClientID)
     suspend fun searchAnimeByID(
         @Path("idAnime") id: String,

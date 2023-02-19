@@ -11,5 +11,4 @@ data class AnimeMCResponse(
     val status: String?=null,
     val title: String?=null,
     val titleAlt: String?=null
-
 )

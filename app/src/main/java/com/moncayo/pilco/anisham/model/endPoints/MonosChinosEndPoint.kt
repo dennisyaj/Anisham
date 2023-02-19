@@ -8,12 +8,12 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MonosChinosEndPoint {
-    @GET("/search/{id}")
+    @GET("search/{id}")
     suspend fun searchAnimeByID(
         @Path("id") id: String
     ): Response<SearchMCResponse>
 
-    @GET("/anime/{id}")
+    @GET("anime/{id}")
     suspend fun getAnimeByID(
         @Path("id") id: String
     ): Response<AnimeMCResponse>
