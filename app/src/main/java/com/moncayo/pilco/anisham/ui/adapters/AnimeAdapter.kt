@@ -20,9 +20,9 @@ class AnimeAdapter :
     class AnimeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private var binding: ItemAnimeBinding = ItemAnimeBinding.bind(view)
         fun render(item: Result, itemClick: (Result) -> Unit) {
-            binding.tvNombre.text = item.anilist.title?.romaji
+            binding.tvNombre.text = item.anilist?.title?.romaji
             binding.tvEpisodio.text = item.episode.toString()
-            binding.tvSimilitud.text = String.format("%.2f", item.similarity * 100) + " %"
+            binding.tvSimilitud.text = String.format("%.2f", item.similarity!! * 100) + " %"
             binding.ivFoto.setOnClickListener {
                 val toShow = Intent(
                     itemView.context,

@@ -12,7 +12,7 @@ class APIRepository {
     }
 
     fun <T> buildTraceMoeService(service: Class<T>): T {
-        val builder = getRetrofitBuilder("https://api.trace.moe")
+        val builder = getRetrofitBuilder("https://api.trace.moe/")
         return builder.create(service)
     }
 
@@ -22,7 +22,12 @@ class APIRepository {
     }
 
     fun <T> buildMonosChinosService(service: Class<T>): T {
-        val builder = getRetrofitBuilder("https://dnsdm.herokuapp.com")
+        val builder = getRetrofitBuilder("https://dnsdm.herokuapp.com/")
+        return builder.create(service)
+    }
+
+    fun <T> buildMyAnimeList(service: Class<T>): T {
+        val builder = getRetrofitBuilder("https://api.myanimelist.net/v2/")
         return builder.create(service)
     }
 }
