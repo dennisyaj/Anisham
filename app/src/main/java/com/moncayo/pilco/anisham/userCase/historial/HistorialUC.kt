@@ -20,4 +20,11 @@ class HistorialUC {
         val dao = conn.getHistorialDAO()
         return dao.obtenerTodoHistorial()
     }
+
+    fun borrar(numero: Int) {
+        val conn = Anisham.getConn()
+        val dao = conn.getHistorialDAO()
+        Log.i("UCE",dao.getOneAnimne(numero).toString())
+
+    }
 }

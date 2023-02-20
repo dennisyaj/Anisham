@@ -11,9 +11,8 @@ import com.moncayo.pilco.anisham.model.entities.api.anime.Result
 class HistorialDB(
     @PrimaryKey(autoGenerate = false)
     val idMal: Int,
-        val itemHistorial: Result,
-
-) {
+    val itemHistorial: Result,
+    ) {
     override fun toString(): String {
         return "HistorialDB(id=$idMal)"
     }
@@ -21,13 +20,13 @@ class HistorialDB(
 
 class AnilistConverter {
 
-        @TypeConverter
-        fun fromAnilist(r: Result): String {
-            return Gson().toJson(r)
-        }
+    @TypeConverter
+    fun fromAnilist(r: Result): String {
+        return Gson().toJson(r)
+    }
 
-        @TypeConverter
-        fun toAnilist(resultString: String): Result {
-            return Gson().fromJson(resultString, Result::class.java)
-        }
+    @TypeConverter
+    fun toAnilist(resultString: String): Result {
+        return Gson().fromJson(resultString, Result::class.java)
+    }
 }

@@ -9,7 +9,7 @@ interface HistorialDAO {
     @Query("select * from HistorialDB")
     fun obtenerTodoHistorial(): List<HistorialDB>
 
-    @Query("select * from HistorialDB where idMal = :idAnime ")
+    @Query("select * from HistorialDB where idMal = :idAnime")
     fun getOneAnimne(idAnime: Int): HistorialDB
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
