@@ -51,7 +51,11 @@ class Animes : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.Main) {
 
             //filtro de contenido de edad y que no se repitan
-            val listAnimesPosibles = data.result!!.filter { it.anilist?.isAdult==Variables.contenidoNSFW }.distinctBy { it.anilist?.id }
+            var listAnimesPosibles = data.result!!.distinctBy { it.anilist?.id }
+            if (!Variables.contenidoNSFW) {
+                listAnimesPosibles =
+                    listAnimesPosibles.filter { it.anilist?.isAdult==false}
+            }
             val itemClick = fun(item: Result) {
                 val job = lifecycleScope.launch {
 

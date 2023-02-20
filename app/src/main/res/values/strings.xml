@@ -13,7 +13,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_label_menu_1">Buscar</string>
-    <string name="text_label_menu_2">Historial</string>
+    <string name="text_label_menu_2">Guardados</string>
     <string name="content_description_media">Portada Anime</string>
     <string name="title">Titulo</string>
     <string name="genero">Géneros:</string>
@@ -23,7 +23,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="description_btn_floating">¿Este anime es correcto?</string>
+    <string name="description_btn_floating">Guardar</string>
     <string name="description_button">Boton para describir si es correto</string>
     <string name="nombreApp">Anisham</string>
 </resources>

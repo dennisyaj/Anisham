@@ -23,7 +23,7 @@ class AnimeAdapter :
             binding.tvNombre.text = item.anilist?.title?.romaji
             binding.tvEpisodio.text = item.episode.toString()
             binding.tvSimilitud.text = String.format("%.2f", item.similarity!! * 100) + " %"
-            binding.ivFoto.setOnClickListener {
+            binding.ivPlay.setOnClickListener {
                 val toShow = Intent(
                     itemView.context,
                     Reproductor::class.java
