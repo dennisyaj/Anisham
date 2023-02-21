@@ -14,7 +14,7 @@ class HistorialDB(
     val itemHistorial: Result,
     ) {
     override fun toString(): String {
-        return "HistorialDB(id=$idMal)"
+        return "HistorialDB(idMal=$idMal, itemHistorial=$itemHistorial)"
     }
 }
 

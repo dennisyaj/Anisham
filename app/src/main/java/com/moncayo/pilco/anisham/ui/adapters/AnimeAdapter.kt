@@ -1,6 +1,7 @@
 package com.moncayo.pilco.anisham.ui.adapters
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,9 +37,6 @@ class AnimeAdapter :
                 )
                 toShow.putExtra("url", item.video)
                 itemView.getContext().startActivity(toShow)
-            }
-            binding.btnBorrar.setOnClickListener {
-                HistorialUC().borrar(item.anilist?.idMal!!.toInt())
             }
             Picasso.get().load(item.image).into(binding.ivFoto)
             itemView.setOnClickListener {

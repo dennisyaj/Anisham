@@ -12,6 +12,9 @@ class HistorialUC {
         val conn = Anisham.getConn()
         val dao = conn.getHistorialDAO()
         val itemDB = HistorialDB(item.anilist!!.idMal!!.toInt(), item)
+
+        Log.i("UCE",itemDB.toString())
+        Log.i("UCE",item.toString())
         dao.insertarHistorial(itemDB)
     }
 
@@ -21,10 +24,9 @@ class HistorialUC {
         return dao.obtenerTodoHistorial()
     }
 
-    fun borrar(numero: Int) {
+    suspend fun borrar(numero: Int) {
         val conn = Anisham.getConn()
         val dao = conn.getHistorialDAO()
         Log.i("UCE",dao.getOneAnimne(numero).toString())
-
     }
 }

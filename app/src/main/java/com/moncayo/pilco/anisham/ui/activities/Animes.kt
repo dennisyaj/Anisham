@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -54,7 +55,7 @@ class Animes : AppCompatActivity() {
             var listAnimesPosibles = data.result!!.distinctBy { it.anilist?.id }
             if (!Variables.contenidoNSFW) {
                 listAnimesPosibles =
-                    listAnimesPosibles.filter { it.anilist?.isAdult==false}
+                    listAnimesPosibles.filter { it.anilist?.isAdult == false }
             }
             val itemClick = fun(item: Result) {
                 val job = lifecycleScope.launch {
@@ -80,6 +81,7 @@ class Animes : AppCompatActivity() {
                     toShowInfo.putExtra("item", json)
                     toShowInfo.putExtra("idDB", json2)
                     startActivity(toShowInfo)
+
                 }
             }
 
