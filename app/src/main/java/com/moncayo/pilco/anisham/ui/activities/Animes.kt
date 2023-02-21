@@ -59,7 +59,7 @@ class Animes : AppCompatActivity() {
             }
             val itemClick = fun(item: Result) {
                 val job = lifecycleScope.launch {
-
+                    binding.piDetalleAnime.visibility = View.VISIBLE
                     //obtenemos la informacion de los animes en español
                     var tmp = MonosChinosUC().generarDetalles(item)
 
@@ -80,6 +80,7 @@ class Animes : AppCompatActivity() {
                     )
                     toShowInfo.putExtra("item", json)
                     toShowInfo.putExtra("idDB", json2)
+                    binding.piDetalleAnime.visibility = View.GONE
                     startActivity(toShowInfo)
 
                 }
