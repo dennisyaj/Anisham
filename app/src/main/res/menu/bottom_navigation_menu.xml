@@ -8,6 +8,6 @@
     <item
         android:id="@+id/item_2"
         android:enabled="true"
-        android:icon="@drawable/icon_2"
+        android:icon="@drawable/baseline_turned_in_24"
         android:title="@string/text_label_menu_2"/>
 </menu>

@@ -45,8 +45,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:contentDescription="ingreso de id usuario"
-        android:hint="Ingrese ID de usuario"
+        android:hint="@string/hint_login"
         app:boxCornerRadiusBottomEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +57,13 @@
             android:id="@+id/tfUserLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription=""
             android:minHeight="48dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

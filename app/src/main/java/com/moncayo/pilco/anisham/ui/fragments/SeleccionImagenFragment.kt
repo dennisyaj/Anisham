@@ -54,7 +54,7 @@ class SeleccionImagenFragment : Fragment() {
 
         binding.btnSend.setOnClickListener {
             binding.cpCarga.visibility = View.VISIBLE
-             lifecycleScope.launch() {
+            lifecycleScope.launch() {
                 var tmpBusqueda = SearchUC().getAnimeWithImg(
                     File(
                         getRealPathFromURI(selectedImageUri)

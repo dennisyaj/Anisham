@@ -1,9 +1,11 @@
 package com.moncayo.pilco.anisham.ui.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -51,10 +53,14 @@ class Animes : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.Main) {
 
             //filtro de contenido de edad y que no se repitan
-            val listAnimesPosibles = data.result!!.filter { it.anilist?.isAdult==Variables.contenidoNSFW }.distinctBy { it.anilist?.id }
+            var listAnimesPosibles = data.result!!.distinctBy { it.anilist?.id }
+            if (!Variables.contenidoNSFW) {
+                listAnimesPosibles =
+                    listAnimesPosibles.filter { it.anilist?.isAdult == false }
+            }
             val itemClick = fun(item: Result) {
                 val job = lifecycleScope.launch {
-
+                    binding.piDetalleAnime.visibility = View.VISIBLE
                     //obtenemos la informacion de los animes en español
                     var tmp = MonosChinosUC().generarDetalles(item)
 
@@ -75,11 +81,28 @@ class Animes : AppCompatActivity() {
                     )
                     toShowInfo.putExtra("item", json)
                     toShowInfo.putExtra("idDB", json2)
+                    binding.piDetalleAnime.visibility = View.GONE
                     startActivity(toShowInfo)
                 }
             }
 
+            val itemClickPlay = fun(item: Result) {
+                val toShow = Intent(
+                    this@Animes,
+                    Reproductor::class.java
+                )
+                toShow.putExtra("url", item.video)
+                startActivity(toShow)
+            }
+            val itemClickBuscar = fun(item: Result) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://www.google.com/search?q=Online " + item.anilist?.title?.romaji)
+                startActivity(intent)
+            }
             adapter.itemClick = itemClick
+            adapter.itemClickPlay = itemClickPlay
+            adapter.itemClickBuscar = itemClickBuscar
             adapter.dataList = listAnimesPosibles
             binding.rvResultadoBusqueda.adapter = adapter
             binding.rvResultadoBusqueda.layoutManager = LinearLayoutManager(

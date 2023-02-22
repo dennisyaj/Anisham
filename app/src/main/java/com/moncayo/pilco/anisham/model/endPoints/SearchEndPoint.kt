@@ -27,7 +27,7 @@ interface SearchEndPoint {
         @Part image: MultipartBody.Part,
     ): Response<SearchResponse>
 
-    @POST("search?anilistInfo")
+    @POST("search?cutBorders&anilistInfo")
     suspend fun conImg(
         @HeaderMap headers: Map<String, String>,
         @Body image: RequestBody,

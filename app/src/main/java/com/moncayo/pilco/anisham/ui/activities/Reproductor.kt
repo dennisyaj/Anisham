@@ -12,7 +12,8 @@ import com.moncayo.pilco.anisham.databinding.ActivityReproductorBinding
 private lateinit var binding: ActivityReproductorBinding
 
 class Reproductor : AppCompatActivity() {
-      override fun onCreate(savedInstanceState: Bundle?) {
+    lateinit var player: ExoPlayer
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReproductorBinding.inflate(layoutInflater)
         val view = binding.root
@@ -35,7 +36,7 @@ class Reproductor : AppCompatActivity() {
     }
 
     private fun cargarVideo(item: String) {
-        val player: ExoPlayer = Builder(this@Reproductor).build()
+        player = Builder(this@Reproductor).build()
         binding.pvVideo.player = player
         val videoUri = Uri.parse(item)
         val mediaItem: MediaItem = MediaItem.fromUri(videoUri)
@@ -44,4 +45,9 @@ class Reproductor : AppCompatActivity() {
         player.play()
     }
 
+    override fun onPause() {
+        super.onPause()
+        player.pause()
+        finish() // Destruye la Activity cuando se pausa
+    }
 }

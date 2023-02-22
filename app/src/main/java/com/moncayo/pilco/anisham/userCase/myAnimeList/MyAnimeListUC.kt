@@ -39,7 +39,7 @@ class MyAnimeListUC {
             null,
             generos,
             item.main_picture.large.toString(),
-            item.mean.toString(),
+            (item.mean/2).toString(),
             item.synopsis,
             null,
             item.title,
