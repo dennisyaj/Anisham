@@ -1,10 +1,14 @@
 package com.moncayo.pilco.anisham.ui.activities
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import com.moncayo.pilco.anisham.R
 import com.moncayo.pilco.anisham.databinding.ActivityDetalleAnimeBinding
 import com.moncayo.pilco.anisham.model.entities.api.monosChinos.AnimeMCResponse
 import com.moncayo.pilco.anisham.ui.adapters.GeneroAdapter
@@ -21,6 +25,7 @@ class DetalleAnime : AppCompatActivity() {
     private var listGeneros = ArrayList<String>()
     var item: AnimeMCResponse = AnimeMCResponse()
     var item2: Result = Result()
+    var guardado = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +54,23 @@ class DetalleAnime : AppCompatActivity() {
                 )
             }
         }
+        buscarEnHistorial(item2)
         initItem(item, item2)
         listGeneros = item.genders as ArrayList<String>
         loadGeneros()
+    }
+
+    private fun buscarEnHistorial(item: Result) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            guardado = withContext(Dispatchers.IO) {
+                HistorialUC().buscarHistorial(item.anilist!!.idMal!!.toInt())
+            }
+            if (guardado) {
+                binding.fbtnAgregar.icon =
+                    ContextCompat.getDrawable(this@DetalleAnime, R.drawable.baseline_turned_in_24)
+                binding.fbtnAgregar.text = "Guardado"
+            }
+        }
     }
 
     private fun loadGeneros() {
@@ -70,8 +89,12 @@ class DetalleAnime : AppCompatActivity() {
         Picasso.get().load(item.image).into(binding.ivBanner)
         binding.tvSoporte.text = item.rating
         binding.rbPuntaje.rating = item.rating!!.toFloat()
-        binding.fbtnAgregar.setOnClickListener {
-            saveItem(item2)
+        binding.fbtnAgregar.setOnClickListener { saveItem(item2) }
+        binding.btnBuscar.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data =
+                Uri.parse("https://www.google.com/search?q=Online " + item.title)
+            startActivity(intent)
         }
     }
 
@@ -80,6 +103,9 @@ class DetalleAnime : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 HistorialUC().saveAnime(item2)
             }
+            binding.fbtnAgregar.icon =
+                ContextCompat.getDrawable(this@DetalleAnime, R.drawable.baseline_turned_in_24)
+            binding.fbtnAgregar.text = "Guardado"
         }
     }
 }

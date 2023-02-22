@@ -26,4 +26,7 @@
     <string name="description_btn_floating">Guardar</string>
     <string name="description_button">Boton para describir si es correto</string>
     <string name="nombreApp">Anisham</string>
+    <string name="txtbtnBorrar">Borrar</string>
+    <string name="hint_login">Ingrese ID de usuario</string>
+    <string name="txt_btn_buscar">Buscar en internet</string>
 </resources>

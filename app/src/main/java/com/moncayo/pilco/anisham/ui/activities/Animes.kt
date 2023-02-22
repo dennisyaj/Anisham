@@ -1,6 +1,7 @@
 package com.moncayo.pilco.anisham.ui.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -82,11 +83,26 @@ class Animes : AppCompatActivity() {
                     toShowInfo.putExtra("idDB", json2)
                     binding.piDetalleAnime.visibility = View.GONE
                     startActivity(toShowInfo)
-
                 }
             }
 
+            val itemClickPlay = fun(item: Result) {
+                val toShow = Intent(
+                    this@Animes,
+                    Reproductor::class.java
+                )
+                toShow.putExtra("url", item.video)
+                startActivity(toShow)
+            }
+            val itemClickBuscar = fun(item: Result) {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://www.google.com/search?q=Online " + item.anilist?.title?.romaji)
+                startActivity(intent)
+            }
             adapter.itemClick = itemClick
+            adapter.itemClickPlay = itemClickPlay
+            adapter.itemClickBuscar = itemClickBuscar
             adapter.dataList = listAnimesPosibles
             binding.rvResultadoBusqueda.adapter = adapter
             binding.rvResultadoBusqueda.layoutManager = LinearLayoutManager(

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -98,11 +98,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
                             android:contentDescription="Enter How Much Cookies You Want"
                             android:isIndicator="true"
                             android:numStars="5"
-                            android:stepSize="0.1"
-                            android:layout_marginLeft="10dp"/>
+                            android:stepSize="0.1" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -122,21 +122,46 @@
                     android:id="@+id/rvGenero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+                    android:orientation="vertical">
+                </androidx.recyclerview.widget.RecyclerView>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                    android:id="@+id/fbtnAgregar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:contentDescription="@string/description_button"
-                    android:text="@string/description_btn_floating"
-                    app:icon="@drawable/baseline_radio_button_unchecked_24"
-                    android:layout_margin="12dp"
-                    />
+                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                        android:id="@+id/btnBuscar"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:contentDescription=""
+                        android:text="@string/txt_btn_buscar"
+                        app:icon="@drawable/baseline_search_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
+                    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                        android:id="@+id/fbtnAgregar"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="12dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:contentDescription="@string/description_button"
+                        android:text="@string/description_btn_floating"
+                        app:icon="@drawable/baseline_turned_in_not_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
